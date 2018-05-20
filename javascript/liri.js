@@ -7,12 +7,8 @@ var Twitter = require('twitter');
 
 var keys = require('../javascript/keys.js');
 
-
-// var keys = "keys.js";
-
 var spotify = new Spotify(keys.spotify);
 var client = new Twitter(keys.twitter);
-
 
 var cmdName = process.argv[2];
 var inputArgs = process.argv;
@@ -56,14 +52,21 @@ function checkCmd() {
 
 function twitterCmd() {
     console.log("Entered Tweets")
-    var params = { screen_name: 'Omens68390424' };
-    // client.get("statuses/user_timeline", params, function(error, tweets, response){
-    //     if (!error) {
-    //         console.log(tweets);
-    //         console.log(response);
-    //     }
-    //     console.log(error);
-    // })
+    var params = { screen_name: 'realDonaldTrump' };
+    client.get("statuses/user_timeline", params, function(error, tweets, response){
+        if (!error) {
+            console.log(tweets);
+            for(var i = 0; i < tweets.length; i++){
+                console.log("===================================================");
+                // console.log(i + 1);
+                console.log("Message: " + tweets[i]["text"]);
+                console.log("By: " + tweets[i]["user"]["name"]);
+
+                // console.log(tweets["user"]["name"]);
+            }
+
+        }
+    })
 };
 
 function spotifyCmd() {
