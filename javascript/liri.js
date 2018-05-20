@@ -28,8 +28,8 @@ inputInfo = inputInfo.substring(0, inputInfo.length - 1);
 checkCmd();
 
 function checkCmd() {
-    console.log(cmdName);
-    console.log(inputInfo);
+    // console.log(cmdName);
+    // console.log(inputInfo);
 
     if (cmdName === "my-tweets") {
         twitterCmd();
@@ -81,6 +81,7 @@ function spotifyCmd() {
             type: 'track',
             query: inputInfo
         }, function (err, data) {
+            console.log("===================================================");
             if (err) {
                 return console.log("Error occurred: " + err);
             } else if (data["tracks"]["total"] != 0) {
@@ -89,16 +90,14 @@ function spotifyCmd() {
                 var dataTracks = data["tracks"]["items"];
 
                 for (var h = 0; h < dataTracks.length; h++) {
-                    console.log("===================================================");
+
                     console.log("Song Name: " + dataTracks[h]["name"]);
 
                     for (var i = 0; i < dataTracks[h]["artists"].length; i++) {
                         console.log("Song Artist " + (i + 1) + ": " + dataTracks[h]["artists"][i]["name"]);
                     }
-
                     console.log("Song URL: " + dataTracks[h]["external_urls"]["spotify"]);
                 }
-
             } else {
                 console.log("Sorry no results.")
             }
@@ -114,30 +113,36 @@ function movieCmd() {
 
     Movie(queryURL, function (error, response, body) {
         console.log("===================================================");
+
         if (!error && response.statusCode === 200) {
             var bodyInfo = JSON.parse(body);
-            var bodyRating = bodyInfo["Ratings"];
-            var bodyNoRating = true;
-            console.log("Title: " + bodyInfo["Title"]);
-            console.log("Release Year: " + bodyInfo["Year"]);
 
-            for (var i = 0; i < bodyRating.length; i++) {
-                if (bodyRating[i]["Source"] === "Internet Movie Database") {
-                    bodyNoRating = false;
-                    console.log("IMDB Rating: " + bodyRating[i]["Value"]);
-                } else if (bodyRating[i]["Source"] === "Rotten Tomatoes") {
-                    bodyNoRating = false;
-                    console.log("Rotten Tomatoes Rating: " + bodyRating[i]["Value"]);
+            if (bodyInfo["Response"] === "True") {
+                var bodyRating = bodyInfo["Ratings"];
+                var bodyNoRating = true;
+                console.log("Title: " + bodyInfo["Title"]);
+                console.log("Release Year: " + bodyInfo["Year"]);
+
+                for (var i = 0; i < bodyRating.length; i++) {
+                    if (bodyRating[i]["Source"] === "Internet Movie Database") {
+                        bodyNoRating = false;
+                        console.log("IMDB Rating: " + bodyRating[i]["Value"]);
+                    } else if (bodyRating[i]["Source"] === "Rotten Tomatoes") {
+                        bodyNoRating = false;
+                        console.log("Rotten Tomatoes Rating: " + bodyRating[i]["Value"]);
+                    };
                 };
-            };
-            if (bodyNoRating === true) {
-                console.log("Sorry no rating available.");
-            };
+                if (bodyNoRating === true) {
+                    console.log("Sorry no rating available.");
+                };
 
-            console.log("Country Produced: " + bodyInfo["Country"]);
-            console.log("Language: " + bodyInfo["Language"]);
-            console.log("Plot: " + bodyInfo["Plot"]);
-            console.log("Actors: " + bodyInfo["Actors"]);
+                console.log("Country Produced: " + bodyInfo["Country"]);
+                console.log("Language: " + bodyInfo["Language"]);
+                console.log("Plot: " + bodyInfo["Plot"]);
+                console.log("Actors: " + bodyInfo["Actors"]);
+            } else {
+                console.log(bodyInfo["Error"]);
+            };
         };
     });
 };

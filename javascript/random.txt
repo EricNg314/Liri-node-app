@@ -1,10 +1,17 @@
 {
    "spotify-this-song": [
         "I want it that way", 
-        "Complicated"
+        "Complicated",
+        "Escape from the city",
+        "Mad World",
+        "Sk8er Boi",
+        "Ashes",
+        "My Heart Will Go On"
     ], 
     "movie-this": [
         "How to Train Your Dragon", 
-        "Star Wars"
+        "Star Wars",
+        "Goldeneye",
+        "The Hobbit"
     ]
 }
