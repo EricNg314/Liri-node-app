@@ -23,12 +23,15 @@ inputInfo = inputInfo.substring(0, inputInfo.length - 1);
 
 checkCmd();
 
+
+
+
 function checkCmd() {
     // console.log(cmdName);
     // console.log(inputInfo);
 
     if (cmdName === "my-tweets") {
-        twitterCmd();
+        twitterCmd()
 
     } else if (cmdName === "spotify-this-song") {
         spotifyCmd();
@@ -52,22 +55,32 @@ function checkCmd() {
 
 function twitterCmd() {
     console.log("Entered Tweets")
-    var params = { screen_name: 'realDonaldTrump' };
-    client.get("statuses/user_timeline", params, function(error, tweets, response){
+    var params = { screen_name: 'realDonaldTrump', tweet_mode: 'extended' };
+    client.get("statuses/user_timeline", params, function (error, tweets, response) {
         if (!error) {
             console.log(tweets);
-            for(var i = 0; i < tweets.length; i++){
+            for (var i = 0; i < tweets.length; i++) {
                 console.log("===================================================");
                 // console.log(i + 1);
                 console.log("Created: " + tweets[i]["created_at"]);
-                console.log("Message: " + tweets[i]["text"]);
+                console.log("Message: " + tweets[i]["full_text"]);
                 console.log("By: " + tweets[i]["user"]["name"]);
 
-                // console.log(tweets["user"]["name"]);
-            }
+                var appendLine = "\n ===================================================";
+                var appendCreated = "\n Created: " + tweets[i]["created_at"];
+                var appendMessage = "\n Message: " + tweets[i]["full_text"];
+                var appendBy = "\n By: " + tweets[i]["user"]["name"];
 
+                fs.appendFile("log.txt", appendLine + appendCreated + appendMessage + appendBy + "\n\n", function (error) {
+                    if (error) {
+                        return console.log(error);
+                    }
+                });
+
+            }
         }
     })
+
 };
 
 function spotifyCmd() {
@@ -85,7 +98,7 @@ function spotifyCmd() {
             type: 'track',
             query: inputInfo
         }, function (err, data) {
-            console.log("===================================================");
+
             if (err) {
                 return console.log("Error occurred: " + err);
             } else if (data["tracks"]["total"] != 0) {
@@ -94,7 +107,7 @@ function spotifyCmd() {
                 var dataTracks = data["tracks"]["items"];
 
                 for (var h = 0; h < dataTracks.length; h++) {
-
+                    console.log("===================================================");
                     console.log("Song Name: " + dataTracks[h]["name"]);
 
                     for (var i = 0; i < dataTracks[h]["artists"].length; i++) {
@@ -116,7 +129,7 @@ function movieCmd() {
     var queryURL = "http://www.omdbapi.com/?t=" + inputInfo + "&apikey=Trilogy"
 
     Movie(queryURL, function (error, response, body) {
-        console.log("===================================================");
+        console.log("\n===================================================");
 
         if (!error && response.statusCode === 200) {
             var bodyInfo = JSON.parse(body);
