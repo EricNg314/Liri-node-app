@@ -1,1 +1,10 @@
-spotify-this-song,"I Want it That Way"
+{
+   "spotify-this-song": [
+        "I want it that way", 
+        "Complicated"
+    ], 
+    "movie-this": [
+        "How to Train Your Dragon", 
+        "Star Wars"
+    ]
+}
