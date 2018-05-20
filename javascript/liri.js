@@ -59,6 +59,7 @@ function twitterCmd() {
             for(var i = 0; i < tweets.length; i++){
                 console.log("===================================================");
                 // console.log(i + 1);
+                console.log("Created: " + tweets[i]["created_at"]);
                 console.log("Message: " + tweets[i]["text"]);
                 console.log("By: " + tweets[i]["user"]["name"]);
 
