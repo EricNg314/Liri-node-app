@@ -106,14 +106,31 @@ function spotifyCmd() {
                 // console.log(data);
                 var dataTracks = data["tracks"]["items"];
 
+                var appendName = "";
+                var appendArtist = "";
+
                 for (var h = 0; h < dataTracks.length; h++) {
                     console.log("===================================================");
                     console.log("Song Name: " + dataTracks[h]["name"]);
+                    appendName = "\n Song Name: " + dataTracks[h]["name"];
 
+                    // Resetting appendArtists for each song.
+                    appendArtist = "";
                     for (var i = 0; i < dataTracks[h]["artists"].length; i++) {
                         console.log("Song Artist " + (i + 1) + ": " + dataTracks[h]["artists"][i]["name"]);
+                        appendArtist += "\n Song Artist " + (i + 1) + ": " + dataTracks[h]["artists"][i]["name"];
                     }
+
                     console.log("Song URL: " + dataTracks[h]["external_urls"]["spotify"]);
+
+                    var appendLine = "\n ===================================================";
+                    var appendURL = "\n Song URL: " + dataTracks[h]["external_urls"]["spotify"];
+
+                    fs.appendFile("log.txt", appendLine + appendName + appendArtist + appendURL + "\n\n", function (error) {
+                        if (error) {
+                            return console.log(error);
+                        }
+                    });
                 }
             } else {
                 console.log("Sorry no results.")
@@ -140,14 +157,25 @@ function movieCmd() {
                 console.log("Title: " + bodyInfo["Title"]);
                 console.log("Release Year: " + bodyInfo["Year"]);
 
+                var appendLine = "\n ===================================================";
+                var appendTitle = "\n Title: " + bodyInfo["Title"];
+                var appendYear = "\n Release Year: " + bodyInfo["Year"];
+                var appendRatingIMDB = "";
+                var appendRatingRT = "";
+
+                //Getting the ratings for IMDB or RT
                 for (var i = 0; i < bodyRating.length; i++) {
                     if (bodyRating[i]["Source"] === "Internet Movie Database") {
                         bodyNoRating = false;
                         console.log("IMDB Rating: " + bodyRating[i]["Value"]);
+                        appendRatingIMDB = "\n IMDB Rating: " + bodyRating[i]["Value"];
                     } else if (bodyRating[i]["Source"] === "Rotten Tomatoes") {
                         bodyNoRating = false;
                         console.log("Rotten Tomatoes Rating: " + bodyRating[i]["Value"]);
+                        appendRatingRT = "\n Rotten Tomatoes Rating: " + bodyRating[i]["Value"];
                     };
+
+
                 };
                 if (bodyNoRating === true) {
                     console.log("Sorry no rating available.");
@@ -157,6 +185,20 @@ function movieCmd() {
                 console.log("Language: " + bodyInfo["Language"]);
                 console.log("Plot: " + bodyInfo["Plot"]);
                 console.log("Actors: " + bodyInfo["Actors"]);
+
+                var appendCountry = "\n Country Produced: " + bodyInfo["Country"];
+                var appendLanguage = "\n Language: " + bodyInfo["Language"];
+                var appendPlot = "\n Plot: " + bodyInfo["Plot"];
+                var appendActors = "\n Actors: " + bodyInfo["Actors"];
+
+                fs.appendFile("log.txt", appendLine + appendTitle + appendYear + 
+                appendRatingIMDB + appendRatingRT + appendCountry + 
+                appendLanguage + appendPlot + appendActors + "\n\n", function (error) {
+                    if (error) {
+                        return console.log(error);
+                    }
+                });
+
             } else {
                 console.log(bodyInfo["Error"]);
             };
