@@ -1,0 +1,44 @@
+
+ ===================================================
+ Title: The Avengers
+ Release Year: 2012
+ IMDB Rating: 8.1/10
+ Rotten Tomatoes Rating: 92%
+ Country Produced: USA
+ Language: English, Russian, Hindi
+ Plot: Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity.
+ Actors: Robert Downey Jr., Chris Evans, Mark Ruffalo, Chris Hemsworth
+
+
+ ===================================================
+ Title: Star Wars: Episode IV - A New Hope
+ Release Year: 1977
+ IMDB Rating: 8.6/10
+ Rotten Tomatoes Rating: 93%
+ Country Produced: USA
+ Language: English
+ Plot: Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle-station while also attempting to rescue Princess Leia from the evil Darth Vader.
+ Actors: Mark Hamill, Harrison Ford, Carrie Fisher, Peter Cushing
+
+
+ ===================================================
+ Title: How to Train Your Dragon
+ Release Year: 2010
+ IMDB Rating: 8.1/10
+ Rotten Tomatoes Rating: 98%
+ Country Produced: USA
+ Language: English
+ Plot: A hapless young Viking who aspires to hunt dragons becomes the unlikely friend of a young dragon himself, and learns there may be more to the creatures than he assumed.
+ Actors: Jay Baruchel, Gerard Butler, Craig Ferguson, America Ferrera
+
+
+ ===================================================
+ Title: Star Wars: Episode IV - A New Hope
+ Release Year: 1977
+ IMDB Rating: 8.6/10
+ Rotten Tomatoes Rating: 93%
+ Country Produced: USA
+ Language: English
+ Plot: Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle-station, while also attempting to rescue Princess Leia from the evil Darth Vader.
+ Actors: Mark Hamill, Harrison Ford, Carrie Fisher, Peter Cushing
+
